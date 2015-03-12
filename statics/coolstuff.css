@@ -1,0 +1,223 @@
+@media ( max-width : 785px ) {
+}
+@media ( min-width : 786px ) {
+
+	body {
+		padding-top: 80px;
+	}
+	#navbar {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		color: #FFFFFF;
+		background-color: #000000;
+		height: 80px;
+	}
+	#navbar.large-navbar {
+		-webkit-animation: nbexpand 0.2s;
+		animation: nbexpand 0.2s;
+	}
+	#navbar.small-navbar {
+		-webkit-animation: nbshrink 0.2s;
+		animation: nbshrink 0.2s;
+		height: 50px;
+	}
+	#navbar > .nbicon {
+		padding: 10px;
+		width: 80px;
+		height: 80px;
+		border-radius: 50%;
+		display: block;
+		float: left;
+	}
+	#navbar > .titleblock {
+		margin-left: 20px;
+		padding-top: 10px;
+	}
+	#navbar .title {
+		font-size: 30px;
+		font-family: "Cinzel Decorative", Arial;
+	}
+	#navbar .subtitle {
+		margin-top: -7px;
+		font-size: 14px;
+		font-family: "Bree Serif", Arial;
+		color: #AAAAAA;
+	}
+	#navbar.large-navbar .nbicon {
+		-webkit-animation: nbiconexpand 0.2s;
+		animation: nbiconexpand 0.2s;
+	}
+	#navbar.small-navbar .nbicon {
+		-webkit-animation: nbiconshrink 0.2s;
+		animation: nbiconshrink 0.2s;
+		width: 50px;
+		height: 50px;
+	}
+	#navbar.large-navbar .title {
+		-webkit-animation: nbtitleexpand 0.2s;
+		animation: nbtitleexpand 0.2s;
+	}
+	#navbar.small-navbar .title {
+		-webkit-animation: nbtitleshrink 0.2s;
+		animation: nbtitleshrink 0.2s;
+		font-size: 20px;
+		margin-top: 1px;
+	}
+	#navbar.large-navbar .subtitle {
+		-webkit-animation: nbsubtitleexpand 0.2s;
+		animation: nbsubtitleexpand 0.2s;
+	}
+	#navbar.small-navbar .subtitle {
+		-webkit-animation: nbsubtitleshrink 0.2s;
+		animation: nbsubtitleshrink 0.2s;
+		font-size: 0px;
+	}
+	
+	@-webkit-keyframes nbshrink {
+		from {
+			height: 80px;
+		}
+		to {
+			height: 50px;
+		}
+	}
+	@keyframes nbshrink {
+		from {
+			height: 80px;
+		}
+		to {
+			height: 50px;
+		}
+	}
+	@-webkit-keyframes nbexpand {
+		from {
+			height: 50px;
+		}
+		to {
+			height: 80px;
+		}
+	}
+	@keyframes nbexpand {
+		from {
+			height: 50px;
+		}
+		to {
+			height: 80px;
+		}
+	}
+	@-webkit-keyframes nbiconshrink {
+		from {
+			width: 80px;
+			height: 80px;
+		}
+		to {
+			width: 50px;
+			height: 50px;
+		}
+	}
+	@keyframes nbiconshrink {
+		from {
+			width: 80px;
+			height: 80px;
+		}
+		to {
+			width: 50px;
+			height: 50px;
+		}
+	}
+	@-webkit-keyframes nbiconexpand {
+		from {
+			width: 50px;
+			height: 50px;
+		}
+		to {
+			width: 80px;
+			height: 80px;
+		}
+	}
+	@keyframes nbiconexpand {
+		from {
+			width: 50px;
+			height: 50px;
+		}
+		to {
+			width: 80px;
+			height: 80px;
+		}
+	}
+	@-webkit-keyframes nbtitleshrink {
+		from {
+			font-size: 30px;
+			margin-top: auto;
+		}
+		to {
+			font-size: 20px;
+			margin-top: 1px;
+		}
+	}
+	@keyframes nbtitleshrink {
+		from {
+			font-size: 30px;
+			margin-top: auto;
+		}
+		to {
+			font-size: 20px;
+			margin-top: 1px;
+		}
+	}
+	@-webkit-keyframes nbtitleexpand {
+		from {
+			font-size: 20px;
+			margin-top: 1px;
+		}
+		to {
+			font-size: 30px;
+			margin-top: auto;
+		}
+	}
+	@keyframes nbtitleexpand {
+		from {
+			font-size: 20px;
+			margin-top: 1px;
+		}
+		to {
+			font-size: 30px;
+			margin-top: auto;
+		}
+	}
+	@-webkit-keyframes nbsubtitleshrink {
+		from {
+			font-size: 14px;
+		}
+		to {
+			font-size: 0px;
+		}
+	}
+	@keyframes nbsubtitleshrink {
+		from {
+			font-size: 14px;
+		}
+		to {
+			font-size: 0px;
+		}
+	}
+	@-webkit-keyframes nbsubtitleexpand {
+		from {
+			font-size: 0px;
+		}
+		to {
+			font-size: 14px;
+		}
+	}
+	@keyframes nbsubtitleexpand {
+		from {
+			font-size: 0px;
+		}
+		to {
+			font-size: 14px;
+		}
+	}
+
+}
