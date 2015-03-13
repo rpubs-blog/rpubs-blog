@@ -16,6 +16,8 @@ db.once( "open" , function( cb ) {
 	var root = new User();
 	root.username = "root";
 	root.password = root.hash("helloworld");
+	root.adminpriv = true;
+	root.actualname = "THE ROOT";
 	/**/
 	console.log( root );
 	root.save( function( err , user ) {

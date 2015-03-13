@@ -1,7 +1,7 @@
 var user = require("./models/user");
 module.exports = function( app , passport , mongoose ) { // passport is expected to be fully configured
 	app.all( "*" , function( req , res , next ) {
-		res.scopedvars = { "user" : req.user , "message" : req.flash("loginerr") || req.flash("createmsg") || req.flash("error") }
+		res.scopedvars = { "user" : req.user , "message" : req.flash("loginerr") || req.flash("createmsg") || req.flash("error") , "post" : false , "posts" : false }
 		next();
 	} );
 	app.all( "/admin/*" , function( req , res , next ) {
@@ -13,6 +13,9 @@ module.exports = function( app , passport , mongoose ) { // passport is expected
 	} );
 	app.get( "/" , function( req , res ) {
 		res.render( "pages/index.ejs" , res.scopedvars );
+	} );
+	app.get( "/*" , function( req , res ) {
+		//
 	} );
 	app.get( "/logout" , function( req , res ) {
 		if ( !req.isAuthenticated() ) return;
