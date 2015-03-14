@@ -32,8 +32,8 @@
 		float: left;
 	}
 	#navbar > .titleblock {
-		margin-left: 20px;
 		padding-top: 10px;
+		float: left;
 	}
 	#navbar .title {
 		font-size: 30px;
@@ -73,6 +73,59 @@
 		-webkit-animation: nbsubtitleshrink 0.2s;
 		animation: nbsubtitleshrink 0.2s;
 		font-size: 0px;
+	}
+	
+	.adminpanel {
+		float: right;
+	}
+	.adminpanel > div {
+		float: left;
+	}
+	.navbarlink {
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-top: 10px;
+		height: 100%;
+		color: #FFFFFF;
+		position: relative;
+		cursor: pointer;
+	}
+	.navbarlink:hover, .navbarlink.active {
+		background-color: #777777;
+		color: #FFFFFF;
+		text-decoration: none;
+	}
+	.navbarlink:hover {
+		padding-top: 5px;
+		border-top: #d8bc33 solid 5px;
+	}
+	.navbarlink:active, .navbarlink.active {
+		padding-top: 5px;
+		border-top: #fade55 solid 5px;
+	}
+	.navbarlink .ddcontent {
+		padding: 15px;
+		cursor: auto;
+		position: absolute;
+		right: 0;
+		display: none;
+		background-color: #DDDDDD;
+		color: #000000;
+		border: 1px solid #777777;
+		border-radius: 10px;
+		min-width: 200px;
+		white-space: nowrap;
+		top: 75px;
+	}
+	.navbarlink:hover .ddcontent, .navbarlink.active .ddcontent {
+		display: inline-block;
+	}
+	
+	.dropdownarrow {
+		margin: auto 5px;
+	}
+	.dropdownarrow:before {
+		content: "▼";
 	}
 	
 	@-webkit-keyframes nbshrink {

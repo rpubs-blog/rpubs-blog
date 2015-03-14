@@ -14,8 +14,8 @@ module.exports = function( app , passport , mongoose ) { // passport is expected
 	app.get( "/" , function( req , res ) {
 		res.render( "pages/index.ejs" , res.scopedvars );
 	} );
-	app.get( "/*" , function( req , res ) {
-		//
+	app.get( "/view/*" , function( req , res , next ) {
+		next();
 	} );
 	app.get( "/logout" , function( req , res ) {
 		if ( !req.isAuthenticated() ) return;

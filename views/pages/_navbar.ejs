@@ -4,6 +4,16 @@
 		<div class = "title">le waffles pwost</div>
 		<div class = "subtitle">Your trusted source of information.</div>
 	</div>
+	<% if ( user ) { %>
+	<div class = "adminpanel navbarlink">
+		<div class = "adminname"><%= user.actualname %></div>
+		<div class = "dropdownarrow"></div>
+		<div class = "ddcontent adminddcontent">
+			<p><%= user.actualname %> (<%= user.username %>)</p>
+			<a class = "ddlink" href = "/profile/<%= user.username %>">Profile</a>
+		</div>
+	</div>
+	<% } %>
 </div><!--
 	<style>
 		div{

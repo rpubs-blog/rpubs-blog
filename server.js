@@ -10,22 +10,20 @@ var db = mongoose.connection;
 db.on( "error" , console.error.bind( console , "MongoDB Connection Error: ") );
 db.once( "open" , function( cb ) {
 	console.log("MongoDB connected.");
-	// root:helloworld@test
-	console.log("Setting up root account . . .");
 	User = require("./models/user");
+	// root:helloworld@test
+	/*console.log("Setting up root account . . .");
 	var root = new User();
-	root.username = "root";
+	root.username = "nelson";
 	root.password = root.hash("helloworld");
 	root.adminpriv = true;
-	root.actualname = "THE ROOT";
-	/**/
+	root.actualname = "Nelson Ooi";
 	console.log( root );
 	root.save( function( err , user ) {
 		console.log("Server has our results. Scary.");
 		if ( err ) return done( err );
 		console.log("Root user created successfully.");
-	} );
-	console.log("xx")
+	} );*/
 } );
 
 var cookieparser = require("cookie-parser");
@@ -39,6 +37,7 @@ require( "./setup/passport" )( app , passport , mongoose );
 app.use( cookieparser() );
 app.use( bodyparser.json() );
 app.use( bodyparser.urlencoded( { extended : true } ) );
+app.use( require("multer")() );
 app.set( "view engine" , "ejs" );
 app.use( session( { secret : "nodejs server-ish ninja leaf o/" , resave : false , saveUninitialized : false } ) );
 app.use( passport.initialize() );
