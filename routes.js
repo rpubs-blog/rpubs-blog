@@ -41,11 +41,11 @@ module.exports = function( app , passport , mongoose ) { // passport is expected
 						}
 					}
 					if ( !f_ERROR ) {
-						req.scopedvars.message.push( changed_fields + " fields modified." );
+						res.scopedvars.message.push( changed_fields + " fields modified." );
 						user.save();
 					}
 				} else {
-					req.scopedvars.error.push( "Wrong password; your information was not changed." );
+					res.scopedvars.error.push( "Wrong password; your information was not changed." );
 				}
 			}
 			res.render( "pages/profile.ejs" , res.scopedvars );
