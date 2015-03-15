@@ -5,7 +5,8 @@ var userSchema = mongoose.Schema( {
 	username : String,
 	password : String,
 	actualname : String,
-	adminpriv : Boolean
+	adminpriv : Boolean,
+	enabled : Boolean
 } );
 userSchema.methods.hash = function( pw ) {
 	return bcrypt.hashSync( pw , bcrypt.genSaltSync( 8 ) , null );

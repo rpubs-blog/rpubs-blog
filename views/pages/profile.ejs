@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include _head %>
+		<style type = "text/css">
+			.profilename {
+				font-size: 30px;
+			}
+			.profileuname {
+				font-size: 20px;
+				color: #777777;
+			}
+			.admin-circle {
+				border-radius: 5px;
+				width: 10px;
+				height: 10px;
+				background-color: #fade55;
+				display: inline-block;
+			}
+			.user-circle {
+				border-radius: 5px;
+				width: 10px;
+				height: 10px;
+				background-color: #98e2eb;
+				display: inline-block;
+			}
+		</style>
+		<script type = "text/javascript">
+			function submitupdater( event ) {
+				var f_FAIL = false;
+				var rmvfc = function() {
+					this.classList.remove("field-check");
+					this.parentNode.removeChild( this.parentNode.getElementsByClassName("do-remove")[0] );
+				}
+				var cpwd = document.getElementById("cpwd");
+				if ( cpwd.value === "" ) {
+					f_FAIL = true;
+					cpwd.classList.add("field-check");
+					var emsg = document.createElement("p");
+					emsg.classList.add("form-help");
+					emsg.classList.add("do-remove");
+					emsg.innerHTML = "Please enter your current password.";
+					cpwd.parentNode.appendChild( emsg );
+					cpwd.onfocus = rmvfc;
+				}
+				var npwd = document.getElementById("npwd");
+				var cnpwd = document.getElementById("cnpwd");
+				if ( npwd.value !== "" && npwd.value !== cnpwd.value ) {
+					f_FAIL = true;
+					cnpwd.classList.add("field-check");
+					var emsg = document.createElement("p");
+					emsg.classList.add("form-help");
+					emsg.classList.add("do-remove");
+					emsg.innerHTML = "Your new passwords do not match.";
+					cnpwd.parentNode.appendChild( emsg );
+					cnpwd.onfocus = rmvfc;
+				}
+				if( f_FAIL ) {
+					event.preventDefault();
+					event.stopPropagation();
+					return false;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<% include _navbar %>
+		<% if ( uiq ) { %>
+		<div class = "window">
+			<div class = "title">
+				User Information
+			</div>
+			<div class = "profilenameblock">
+				<span class = "profilename"><%= uiq.actualname %></span>
+				<span class = "profileuname">(<%= uiq.username %>)
+				<% if ( !uiq.enabled ) { %>(Account disabled)<% } %></span>
+			</div>
+			<div class = "permissionsblock">
+				<div class = "<%= uiq.adminpriv ? 'admin' : 'user' %>-circle"></div>
+				<span class = "adminpriv"><%= uiq.adminpriv ? 'Admin' : 'User' %></span>
+			</div>
+		</div>
+		<% if ( user && uiq.username == user.username ) { %>
+		<div class = "window">
+			<div class = "title">
+				Change account information
+			</div>
+			<% if ( user.username == "root" ) { %>
+			<p>The root account cannot be modified.</p>
+			<% } else { %>
+			<form action = "/profile/<%= uiq.username %>" method = "POST" id = "udinf">
+				<div class = "form-block">
+					<p class = "form-help">Unchanged fields will not be modified.</p>
+				</div>
+				<div class = "form-block">
+					<label>Current password</label>
+					<input type = "password" class = "textbox form-input" id = "cpwd" name = "cpwd" placeholder = "Current password">
+				</div>
+				<div class = "form-block">
+					<label>New password</label>
+					<input type = "password" class = "textbox form-input" id = "npwd" name = "npwd" placeholder = "New password">
+				</div>
+				<div class = "form-block">
+					<label>Confirm new password</label>
+					<input type = "password" class = "textbox form-input" id = "cnpwd" name = "cnpwd" placeholder = "New password">
+				</div>
+				<div class = "form-block">
+					<input type = "submit" class = "button form-input" value = "Update information">
+				</div>
+			</form>
+			<script type = "text/javascript">
+				document.getElementById("udinf").onsubmit = submitupdater;
+			</script>
+			<% } %>
+		</div>
+		<% } %>
+		<% } else { %>
+		Sorry, that user does not exist.
+		<% } %>
+	</body>
+</html>

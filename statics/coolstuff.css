@@ -4,6 +4,8 @@
 
 	body {
 		padding-top: 80px;
+		font-size: 14px;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	}
 	#navbar {
 		position: fixed;
@@ -94,14 +96,8 @@
 		background-color: #777777;
 		color: #FFFFFF;
 		text-decoration: none;
-	}
-	.navbarlink:hover {
 		padding-top: 5px;
 		border-top: #d8bc33 solid 5px;
-	}
-	.navbarlink:active, .navbarlink.active {
-		padding-top: 5px;
-		border-top: #fade55 solid 5px;
 	}
 	.navbarlink .ddcontent {
 		padding: 15px;
@@ -126,6 +122,89 @@
 	}
 	.dropdownarrow:before {
 		content: "▼";
+	}
+	.ddlink {
+		display: block;
+		padding: 5px 15px;
+		color: #000000;
+		margin: auto -15px;
+	}
+	.ddlink:hover {
+		color: #000000;
+		background-color: #AAAAAA;
+		text-decoration: none;
+	}
+	.ddlink:visited, .ddlink:focus {
+		color: #000000;
+		text-decoration: none;
+	}
+	
+	.window {
+		border-radius: 10px;
+		padding: 15px;
+		margin: 10px;
+		border: #CCCCCC 1px solid;
+	}
+	.window .title {
+		margin: -15px -15px 15px;
+		padding: 10px;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+		background-color: #CCCCCC;
+	}
+	
+	.form-block {
+		margin: 10px auto;
+	}
+	.form-block * {
+		display: block;
+	}
+	.form-block label {
+		font-weight: bold;
+	}
+	.form-block .form-input {
+		width: 100%;
+	}
+	.form-block .form-help {
+		color: #777777;
+	}
+	.textbox {
+		height: 34px;
+		padding: 6px 12px;
+		font-size: 14px;
+		line-height: 1.428;
+		color: #555555;
+		background-color: #FFFFFF;
+		background-image: none;
+		border: 1px solid #CCCCCC;
+		border-radius: 4px;
+		margin: 0;
+		transition: border-color ease-in-out 0.2s, box-shadow ease-in-out 0.2s;
+	}
+	.textbox:focus {
+		border-color: rgba( 82 , 168 , 236 , 0.8 );
+		outline: 0;
+		box-shadow: 0 0 8px rgba( 102 , 175 , 233 , 0.6 );
+	}
+	.textbox.field-check {
+		border-color: #FF7777;
+	}
+	.button {
+		height: 34px;
+		padding: 6px 12px;
+		line-height: 1.428;
+		color: #555555;
+		background-color: #FFFFFF;
+		background-image: none;
+		border: 1px solid #CCCCCC;
+		border-radius: 4px;
+		margin: 0;
+		text-align: center;
+	}
+	.button:hover {
+		color: #333333;
+		background-color: #e6e6e6;
+		border-color: #ADADAD;
 	}
 	
 	@-webkit-keyframes nbshrink {

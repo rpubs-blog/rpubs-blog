@@ -21,7 +21,8 @@ module.exports = function( app , passport ) {
 		console.log( username + " has tried to login with password " + password );
 		User.findOne( { username : username } , function ( err , user ) {
 			if ( err ) return done( err );
-			if ( !user || !user.validateUser( password ) ) return done( null , false , req.flash( "loginerr" , "Invalid username or password." ) );
+			if ( !user || !user.validateUser( password ) ) return done( null , false , req.flash( "error" , "Invalid username or password." ) );
+			if ( !user.enabled ) return done( null , false , req.flash( "error" , "Your account has been disabled. If you think this is a mistake, contact administrators." ) );
 			return done( null , user );
 		} );
 	} ) );/*

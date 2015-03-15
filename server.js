@@ -12,18 +12,20 @@ db.once( "open" , function( cb ) {
 	console.log("MongoDB connected.");
 	User = require("./models/user");
 	// root:helloworld@test
-	/*console.log("Setting up root account . . .");
+	/*//console.log("Deleting all users . . .");
+	//User.remove( {} , function(){} );
+	console.log("Setting up root account . . .");
 	var root = new User();
-	root.username = "nelson";
+	root.username = "root";
 	root.password = root.hash("helloworld");
 	root.adminpriv = true;
-	root.actualname = "Nelson Ooi";
-	console.log( root );
+	root.actualname = "Raffles Publications";
+	root.enabled = true;
 	root.save( function( err , user ) {
 		console.log("Server has our results. Scary.");
 		if ( err ) return done( err );
 		console.log("Root user created successfully.");
-	} );*/
+	} );/**/
 } );
 
 var cookieparser = require("cookie-parser");
