@@ -6,13 +6,17 @@ var userSchema = mongoose.Schema( {
 	password : String,
 	actualname : String,
 	adminpriv : Boolean,
-	enabled : Boolean
+	enabled : Boolean,
+	uuid : Number
 } );
 userSchema.methods.hash = function( pw ) {
 	return bcrypt.hashSync( pw , bcrypt.genSaltSync( 8 ) , null );
 }
 userSchema.methods.validateUser = function( pw ) {
 	return bcrypt.compareSync( pw , this.password );
+}
+userSchema.methods.getUUID = function() {
+	return Date.now();
 }
 
 module.exports = mongoose.model( "User" , userSchema );

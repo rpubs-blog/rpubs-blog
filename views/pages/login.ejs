@@ -1,8 +1,11 @@
-<%= error ? error : "" %>
-
+<html><head>
+<% include _head %>
+</head>
+<body><% include _message %>
 
 <form action = "/login" method = "POST">
 	Username : <input type = "text" name = "username" /><br />
 	Password : <input type = "password" name = "password" /><br />
 	<input type = "submit" value = "LOGINNN >>" />
 </form>
+</body></html>

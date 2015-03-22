@@ -1,7 +1,7 @@
 var User = require("./models/user");
 module.exports = function( app , passport , mongoose ) { // passport is expected to be fully configured
 	app.all( "*" , function( req , res , next ) {
-		res.scopedvars = { "user" : req.user , "error" : req.flash("error") , "message" : req.flash("message") , "post" : false , "posts" : false }
+		res.scopedvars = { "user" : req.user , "errors" : req.flash("error") , "message" : req.flash("message") , "post" : false , "posts" : false }
 		next();
 	} );
 	app.all( "/admin/*" , function( req , res , next ) {
@@ -23,6 +23,7 @@ module.exports = function( app , passport , mongoose ) { // passport is expected
 		} );
 	} );
 	app.post( "/profile/*" , function( req , res ) {
+		var f_RENDER = true;
 		User.findOne( { username : req.url.slice( req.url.indexOf( "/" , 2 ) + 1 ).toLowerCase() } , function( err , user ) {
 			if ( err ) throw err;
 			if ( !user ) res.scopedvars.uiq = false;
@@ -41,14 +42,61 @@ module.exports = function( app , passport , mongoose ) { // passport is expected
 						}
 					}
 					if ( !f_ERROR ) {
-						res.scopedvars.message.push( changed_fields + " fields modified." );
+						res.scopedvars.message.push( changed_fields + " field(s) modified." );
 						user.save();
 					}
 				} else {
-					res.scopedvars.error.push( "Wrong password; your information was not changed." );
+					res.scopedvars.error.push( "Wrong password; your changes were not saved." );
+				}
+			} else if ( req.body.apwd ) {
+				if ( req.user.validateUser( req.body.apwd ) ) {
+					var changed_fields = 0;
+					var f_REDIRECT = false;
+					if ( req.body.acnun && user.username !== req.body.acnun ) {
+						changed_fields++;
+						f_REDIRECT = true;
+					}
+					if ( req.body.acnan && req.body.acnan !== user.actualname ) {
+						changed_fields++;
+						user.actualname = req.body.acnan;
+					}
+					if ( req.body.acnpwd && !user.validateUser( req.body.acnpwd ) ) {
+						changed_fields++;
+						user.password = user.hash( req.body.acnpwd );
+					}
+					if ( !!req.body.acadm !== user.adminpriv ) {
+						changed_fields++;
+						user.adminpriv = !!req.body.acadm;
+					}
+					if ( !!req.body.acena !== user.enabled ) {
+						changed_fields++;
+						user.enabled = !!req.body.acena;
+					}
+					if ( changed_fields ) {
+						if ( f_REDIRECT ) {
+							f_RENDER = false;
+							User.findOne( { username : req.body.acnun.toLowerCase() } , function( err , u ) {
+								if ( err ) throw err;
+								if ( u ) {
+									res.scopedvars.error.push( "A user with that username already exists." );
+									res.render( "pages/profile.ejs" , res.scopedvars );
+								} else {
+									user.username = req.body.acnun.toLowerCase();
+									req.flash( "message" , changed_fields + " field(s) modified." );
+									user.save();
+									res.redirect( "/profile/" + req.body.acnun.toLowerCase() );
+								}
+							} );
+						} else {
+							res.scopedvars.message.push( changed_fields + " field(s) modified." );
+							user.save();
+						}
+					}
+				} else {
+					res.scopedvars.message.push( "Wrong password; your changes were not saved." );
 				}
 			}
-			res.render( "pages/profile.ejs" , res.scopedvars );
+			if ( f_RENDER ) res.render( "pages/profile.ejs" , res.scopedvars );
 		} );
 	} );
 	app.get( "/logout" , function( req , res ) {

@@ -112,6 +112,7 @@
 		min-width: 200px;
 		white-space: nowrap;
 		top: 75px;
+		z-index: 999999;
 	}
 	.navbarlink:hover .ddcontent, .navbarlink.active .ddcontent {
 		display: inline-block;
@@ -168,6 +169,10 @@
 	.form-block .form-help {
 		color: #777777;
 	}
+	.form-input.checkbox {
+		width: auto;
+		display: inline;
+	}
 	.textbox {
 		height: 34px;
 		padding: 6px 12px;
@@ -205,6 +210,42 @@
 		color: #333333;
 		background-color: #e6e6e6;
 		border-color: #ADADAD;
+	}
+	.flash-message-container {
+		position: absolute;
+		right: 150px;
+		top: 150px;
+	}
+	.flash-message {
+		border: 2px solid;
+		border-radius: 4px;
+		width: 400px;
+		min-height: 34px;
+		font-size: 14px;
+		padding: 6px 12px;
+		line-height: 1.428;
+		margin: 10px;
+		z-index: 0;
+	}
+	.flash-message * {
+		z-index: 0;
+	}
+	.flash-message:after {
+		content: "×";
+		color: rgba( 100 , 100 , 100 , 0.4 );
+		float: right;
+		cursor: pointer;
+	}
+	.flash-message:after:hover {
+		color: rgba( 150 , 150 , 150 , 0.4 );
+	}
+	.flash-message.flash-message-info {
+		background-color: #aaaaff;
+		border-color: #8888dd;
+	}
+	.flash-message.flash-message-error {
+		background-color: #ff7777;
+		border-color: #dd5555;
 	}
 	
 	@-webkit-keyframes nbshrink {

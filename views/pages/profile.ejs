@@ -65,6 +65,7 @@
 	</head>
 	<body>
 		<% include _navbar %>
+		<% include _message %>
 		<% if ( uiq ) { %>
 		<div class = "window">
 			<div class = "title">
@@ -86,7 +87,7 @@
 				Change account information
 			</div>
 			<% if ( user.username == "root" ) { %>
-			<p>The root account cannot be modified.</p>
+			<div>The root account cannot be modified. To perform changes on the root account, please contact <a href = "/profile/samuel">Samuel Tan</a> or <a href = "/profile/nelson">Nelson Ooi</a>.</div>
 			<% } else { %>
 			<form action = "/profile/<%= uiq.username %>" method = "POST" id = "udinf">
 				<div class = "form-block">
@@ -111,6 +112,47 @@
 			<script type = "text/javascript">
 				document.getElementById("udinf").onsubmit = submitupdater;
 			</script>
+			<% } %>
+		</div>
+		<% } %>
+		<% if ( user && user.adminpriv ) { %>
+		<div class = "window">
+			<div class = "title">
+				Admin control
+			</div>
+			<% if ( uiq.username == "root" && user.username != "samuel" && user.username != "nelson" ) { %>
+			<div>The root account cannot be modified. To perform changes on the root account, please contact <a href = "/profile/samuel">Samuel Tan</a> or <a href = "/profile/nelson">Nelson Ooi</a>.</div>
+			<% } else { %>
+			<form action = "/profile/<%= uiq.username %>" method = "POST" id = "udinf">
+				<div class = "form-block">
+					<p class = "form-help">Unchanged or blank fields will not be modified.</p>
+				</div>
+				<div class = "form-block">
+					<label>Your password</label>
+					<input type = "password" class = "textbox form-input" name = "apwd" placeholder = "Your password">
+				</div>
+				<div class = "form-block">
+					<label>Username</label>
+					<input type = "text" class = "textbox form-input" name = "acnun" placeholder = "Admin control :: username" value = "<%= uiq.username %>">
+				</div>
+				<div class = "form-block">
+					<label>Actual Name</label>
+					<input type = "text" class = "textbox form-input" name = "acnan" placeholder = "Admin control :: actualname" value = "<%= uiq.actualname %>">
+				</div>
+				<div class = "form-block">
+					<label>New password</label>
+					<input type = "password" class = "textbox form-input" name = "acnpwd" placeholder = "Admin control :: password">
+				</div>
+				<div class = "form-block">
+					<input type = "checkbox" class = "checkbox form-input" name = "acadm"<%= uiq.adminpriv ? " checked" : "" %>> Admin
+				</div>
+				<div class = "form-block">
+					<input type = "checkbox" class = "checkbox form-input" name = "acena"<%= uiq.enabled ? " checked" : "" %>> Enabled
+				</div>
+				<div class = "form-block">
+					<input type = "submit" class = "button form-input" value = "Modify information">
+				</div>
+			</form>
 			<% } %>
 		</div>
 		<% } %>

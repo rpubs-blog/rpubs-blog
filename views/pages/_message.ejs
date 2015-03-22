@@ -1,0 +1,8 @@
+<div class = "flash-message-container">
+	<% for ( var i = 0 ; i < message.length ; i++ ) { %>
+		<div class = "flash-message flash-message-info"><%= message[i] %></div>
+	<% } %>
+	<% for ( var i = 0 ; i < errors.length ; i++ ) { %>
+		<div class = "flash-message flash-message-error"><%= errors[i] %></div>
+	<% } %>
+</div>

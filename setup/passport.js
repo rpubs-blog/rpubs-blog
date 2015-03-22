@@ -18,7 +18,7 @@ module.exports = function( app , passport ) {
 		passReqToCallback : true
 	} , function( req , username , password , done ) {
 		if ( username ) username = username.toLowerCase();
-		console.log( username + " has tried to login with password " + password );
+		//console.log( username + " has tried to login with password " + password );
 		User.findOne( { username : username } , function ( err , user ) {
 			if ( err ) return done( err );
 			if ( !user || !user.validateUser( password ) ) return done( null , false , req.flash( "error" , "Invalid username or password." ) );
