@@ -4,7 +4,7 @@ var postSchema = mongoose.Schema( {
 	subforum : String,
 	title : String,
 	postedtime: Number,
-	authoruuid: String,
+	authoruuid: Number,
 	content : String
 } );
 

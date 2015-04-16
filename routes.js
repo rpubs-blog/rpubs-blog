@@ -2,6 +2,11 @@ var User = require("./models/user");
 module.exports = function( app , passport , mongoose ) { // passport is expected to be fully configured
 	app.all( "*" , function( req , res , next ) {
 		res.scopedvars = { "user" : req.user , "errors" : req.flash("error") , "message" : req.flash("message") , "post" : false , "posts" : false }
+		if ( req.user && !req.user.enabled ) {
+			req.flash( "error" , "Your account has been disabled and you have been logged out." );
+			req.logout();
+			res.redirect("/");
+		}
 		next();
 	} );
 	app.all( "/admin/*" , function( req , res , next ) {

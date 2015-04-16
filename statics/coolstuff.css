@@ -15,14 +15,11 @@
 		color: #FFFFFF;
 		background-color: #000000;
 		height: 80px;
-	}
-	#navbar.large-navbar {
-		-webkit-animation: nbexpand 0.2s;
-		animation: nbexpand 0.2s;
+		z-index: 999999999;
+		transition: height 0.2s;
+		-webkit-transition: height 0.2s;
 	}
 	#navbar.small-navbar {
-		-webkit-animation: nbshrink 0.2s;
-		animation: nbshrink 0.2s;
 		height: 50px;
 	}
 	#navbar > .nbicon {
@@ -32,6 +29,8 @@
 		border-radius: 50%;
 		display: block;
 		float: left;
+		transition: width 0.2s, height 0.2s;
+		-webkit-transition: width 0.2s, height 0.2s;
 	}
 	#navbar > .titleblock {
 		padding-top: 10px;
@@ -40,40 +39,26 @@
 	#navbar .title {
 		font-size: 30px;
 		font-family: "Cinzel Decorative", Arial;
+		transition: font-size 0.2s, margin-top 0.2s;
+		-webkit-transition: font-size 0.2s, margin-top 0.2s;
 	}
 	#navbar .subtitle {
 		margin-top: -7px;
 		font-size: 14px;
 		font-family: "Bree Serif", Arial;
 		color: #AAAAAA;
-	}
-	#navbar.large-navbar .nbicon {
-		-webkit-animation: nbiconexpand 0.2s;
-		animation: nbiconexpand 0.2s;
+		transition: font-size 0.2s;
+		-webkit-transition: font-size 0.2s;
 	}
 	#navbar.small-navbar .nbicon {
-		-webkit-animation: nbiconshrink 0.2s;
-		animation: nbiconshrink 0.2s;
 		width: 50px;
 		height: 50px;
 	}
-	#navbar.large-navbar .title {
-		-webkit-animation: nbtitleexpand 0.2s;
-		animation: nbtitleexpand 0.2s;
-	}
 	#navbar.small-navbar .title {
-		-webkit-animation: nbtitleshrink 0.2s;
-		animation: nbtitleshrink 0.2s;
 		font-size: 20px;
 		margin-top: 1px;
 	}
-	#navbar.large-navbar .subtitle {
-		-webkit-animation: nbsubtitleexpand 0.2s;
-		animation: nbsubtitleexpand 0.2s;
-	}
 	#navbar.small-navbar .subtitle {
-		-webkit-animation: nbsubtitleshrink 0.2s;
-		animation: nbsubtitleshrink 0.2s;
 		font-size: 0px;
 	}
 	
@@ -113,6 +98,11 @@
 		white-space: nowrap;
 		top: 75px;
 		z-index: 999999;
+		transition: top 0.2s;
+		-webkit-transition: top 0.2s;
+	}
+	#navbar.small-navbar .navbarlink .ddcontent {
+		top: 45px;
 	}
 	.navbarlink:hover .ddcontent, .navbarlink.active .ddcontent {
 		display: inline-block;
@@ -248,149 +238,33 @@
 		border-color: #dd5555;
 	}
 	
-	@-webkit-keyframes nbshrink {
-		from {
-			height: 80px;
-		}
-		to {
-			height: 50px;
-		}
+	.cont-post {
+		text-decoration: none;
+		display: block;
+		padding: 20px;
+		border-top: solid 1px gray;
+		border-bottom: solid 1px gray;
+		padding-right: 8px;
 	}
-	@keyframes nbshrink {
-		from {
-			height: 80px;
-		}
-		to {
-			height: 50px;
-		}
+	.cont-post:hover {
+		background-color: #CCCCCC;
 	}
-	@-webkit-keyframes nbexpand {
-		from {
-			height: 50px;
-		}
-		to {
-			height: 80px;
-		}
+	.cont-post h1 {
+		margin: 0;
+		font-size: 20pt;
+		color: blue;
+		margin-bottom: 0px;
 	}
-	@keyframes nbexpand {
-		from {
-			height: 50px;
-		}
-		to {
-			height: 80px;
-		}
+	.cont-post h1>small {
+		color: gray;
+		font-size: 12pt;
 	}
-	@-webkit-keyframes nbiconshrink {
-		from {
-			width: 80px;
-			height: 80px;
-		}
-		to {
-			width: 50px;
-			height: 50px;
-		}
+	.cont-post .cont {
+		margin-top: 10px;
 	}
-	@keyframes nbiconshrink {
-		from {
-			width: 80px;
-			height: 80px;
-		}
-		to {
-			width: 50px;
-			height: 50px;
-		}
-	}
-	@-webkit-keyframes nbiconexpand {
-		from {
-			width: 50px;
-			height: 50px;
-		}
-		to {
-			width: 80px;
-			height: 80px;
-		}
-	}
-	@keyframes nbiconexpand {
-		from {
-			width: 50px;
-			height: 50px;
-		}
-		to {
-			width: 80px;
-			height: 80px;
-		}
-	}
-	@-webkit-keyframes nbtitleshrink {
-		from {
-			font-size: 30px;
-			margin-top: auto;
-		}
-		to {
-			font-size: 20px;
-			margin-top: 1px;
-		}
-	}
-	@keyframes nbtitleshrink {
-		from {
-			font-size: 30px;
-			margin-top: auto;
-		}
-		to {
-			font-size: 20px;
-			margin-top: 1px;
-		}
-	}
-	@-webkit-keyframes nbtitleexpand {
-		from {
-			font-size: 20px;
-			margin-top: 1px;
-		}
-		to {
-			font-size: 30px;
-			margin-top: auto;
-		}
-	}
-	@keyframes nbtitleexpand {
-		from {
-			font-size: 20px;
-			margin-top: 1px;
-		}
-		to {
-			font-size: 30px;
-			margin-top: auto;
-		}
-	}
-	@-webkit-keyframes nbsubtitleshrink {
-		from {
-			font-size: 14px;
-		}
-		to {
-			font-size: 0px;
-		}
-	}
-	@keyframes nbsubtitleshrink {
-		from {
-			font-size: 14px;
-		}
-		to {
-			font-size: 0px;
-		}
-	}
-	@-webkit-keyframes nbsubtitleexpand {
-		from {
-			font-size: 0px;
-		}
-		to {
-			font-size: 14px;
-		}
-	}
-	@keyframes nbsubtitleexpand {
-		from {
-			font-size: 0px;
-		}
-		to {
-			font-size: 14px;
-		}
+	.twitter-share-button {
+		position: relative;
+		top: 5px;
 	}
 
 }

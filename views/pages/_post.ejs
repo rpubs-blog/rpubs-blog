@@ -1,9 +1,13 @@
-<% if ( disppost ) { %>
+<% if ( typeof disppost !== "undefined" ) { %>
 <div class = "cont-post">
-	<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+	<h1><%= disppost.title %> <small>Posted <%= disppost.postedtime %>, in <%= disppost.subforum %></small></h1>
+	<p class = "cont"><%= disppost.summary || "Summary" %> <a href = "">Read More...</a></p>
+	<div class = "fb-like" data-href = "https://developers.facebook.com/docs/plugins/" data-layout = "button_count" data-action = "like" data-show-faces = "false" data-share = "true"></div>
+	<a class = "twitter-share-button" href = "https://twitter.com/share" data-url = "http://hello.world" data-text = "Summary">Tweet</a>
 </div>
 <% } else { %>
 <div class = "cont-post">
-	Uh-oh, something broke! Please report this to <a href = "/profile/samuel">Samuel Tan</a> or <a href = "/profile/nelson">Nelson Ooi</a> and cite the following error: "disppost undefined".
+	<h1>Cake <small>Posted 1 January, 1980, in /dev/null</small></h1>
+	<p class = "cont">Uh-oh, something broke! Please report this to <a href = "/profile/samuel">Samuel Tan</a> or <a href = "/profile/nelson">Nelson Ooi</a> and cite the following error: "disppost undefined".</p>
 </div>
 <% } %>
