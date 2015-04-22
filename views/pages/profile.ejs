@@ -10,19 +10,20 @@
 				font-size: 20px;
 				color: #777777;
 			}
-			.admin-circle {
+			.circle {
 				border-radius: 5px;
 				width: 10px;
 				height: 10px;
-				background-color: #fade55;
 				display: inline-block;
 			}
+			.admin-circle {
+				background-color: #fade55;
+			}
 			.user-circle {
-				border-radius: 5px;
-				width: 10px;
-				height: 10px;
 				background-color: #98e2eb;
-				display: inline-block;
+			}
+			.dev-circle {
+				background-color: #f72613;
 			}
 		</style>
 		<script type = "text/javascript">
@@ -77,8 +78,8 @@
 				<% if ( !uiq.enabled ) { %>(Account disabled)<% } %></span>
 			</div>
 			<div class = "permissionsblock">
-				<div class = "<%= uiq.adminpriv ? 'admin' : 'user' %>-circle"></div>
-				<span class = "adminpriv"><%= uiq.adminpriv ? 'Admin' : 'User' %></span>
+				<div class = "<%= uiq.dev ? 'dev' : uiq.adminpriv ? 'admin' : 'user' %>-circle circle"></div>
+				<span class = "adminpriv"><%= uiq.dev ? 'Dev' : uiq.adminpriv ? 'Admin' : 'User' %></span>
 			</div>
 		</div>
 		<% if ( user && uiq.username == user.username ) { %>
@@ -120,8 +121,10 @@
 			<div class = "title">
 				Admin control
 			</div>
-			<% if ( uiq.username == "root" && user.username != "samuel" && user.username != "nelson" ) { %>
+			<% if ( uiq.username == "root" && !user.dev ) { %>
 			<div>The root account cannot be modified. To perform changes on the root account, please contact <a href = "/profile/samuel">Samuel Tan</a> or <a href = "/profile/nelson">Nelson Ooi</a>.</div>
+			<% } else if ( uiq.dev && !user.dev ) { %>
+			<div>You cannot modify this account.</div>
 			<% } else { %>
 			<form action = "/profile/<%= uiq.username %>" method = "POST" id = "udinf">
 				<div class = "form-block">

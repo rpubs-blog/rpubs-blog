@@ -7,6 +7,7 @@ var userSchema = mongoose.Schema( {
 	actualname : String,
 	adminpriv : Boolean,
 	enabled : Boolean,
+	dev : Boolean,
 	uuid : Number
 } );
 userSchema.methods.hash = function( pw ) {
